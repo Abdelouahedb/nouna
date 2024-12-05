@@ -201,25 +201,7 @@
 
 <body>
 
-     <script>
-        
-        // Check if the user is logged in
-        var loggedIn = localStorage.getItem("loggedIn");
-        if (!loggedIn || loggedIn !== "true") {
-            // If not logged in, redirect to the login page
-            window.location.href = "index.html";
-        } else {
-            // Set the flag again to ensure that the user remains logged in on page refresh
-            localStorage.setItem("loggedIn", "true");
-        }
-
-        // Listen for page refresh or unload events
-        window.addEventListener("beforeunload", function (event) {
-            // Clear the login state upon page refresh
-            localStorage.removeItem("loggedIn");
-        });
-        
-    </script>
+     
 
     
     <img src="cupcake.gif" alt="Cupcake GIF" class="cupcake cupcake-left">
