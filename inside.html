@@ -211,7 +211,34 @@
 
 
   
+    <script>
+        // Set the timeout duration (in milliseconds)
+        const TIMEOUT_DURATION = 10 * 60 * 1000; // 10 minutes
 
+        // Variable to track the timeout
+        let inactivityTimeout;
+
+        // Function to reset the timeout
+        function resetTimeout() {
+            // Clear the existing timeout
+            clearTimeout(inactivityTimeout);
+
+            // Set a new timeout
+            inactivityTimeout = setTimeout(() => {
+                // Redirect to the login page after 10 minutes of inactivity
+                window.location.href = "index.html"; // Replace with your login page URL
+            }, TIMEOUT_DURATION);
+        }
+
+        // Attach event listeners to reset the timeout on user interaction
+        document.addEventListener("mousemove", resetTimeout);
+        document.addEventListener("keydown", resetTimeout);
+        document.addEventListener("click", resetTimeout);
+        document.addEventListener("scroll", resetTimeout);
+
+        // Start the timeout on page load
+        window.onload = resetTimeout;
+    </script>
 
 
 
