@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nouna</title>
+    <link rel="icon" type="image/png" href="redheart.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the same CSS file, or you can use a separate one -->
+
+    <head>
+        <style>
+            h1 {
+                color: white;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            p {
+                color: white;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            }
+
+            /* Initially hidden */
+            .message {
+                opacity: 0;
+                transition: opacity 2s ease-in-out;
+            }
+
+            /* When the message is shown */
+            .message.show {
+                opacity: 1;
+            }
+
+            /* Hide audio controls (optional) */
+            audio {
+                display: none;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+            /* Initially hide the quiz container */
+            .quiz-container {
+                display: none;
+            }
+
+            /* Initially hidden message */
+            .message {
+                opacity: 0;
+                transition: opacity 2s ease-in-out;
+            }
+
+            /* When the message is shown */
+            .message.show {
+                opacity: 1;
+
+            }
+
+            /* Style for the rest (quiz styling remains the same) */
+            .quiz-container {
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                max-width: 600px;
+                margin: 50px auto;
+                text-align: center;
+
+                display: none;
+                /* Initially hidden */
+                opacity: 0;
+                /* Ensure it's transparent initially */
+                transition: opacity 2s ease-in-out;
+                /* Smooth fade-in effect */
+
+
+            }
+
+            /* Style for the questions */
+            .question {
+                margin-bottom: 20px;
+                text-align: left;
+            }
+
+            /* Style for the submit button */
+            button {
+                background-color: #c04848;
+                color: white;
+                padding: 14px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+                font-family: 'Open Sans', sans-serif;
+            }
+
+            button:hover {
+                background-color: #b03636;
+            }
+
+            /* Style for the result message */
+            #quiz-result {
+                margin-top: 30px;
+                font-size: 1.2rem;
+                font-family: 'Open Sans', sans-serif;
+            }
+
+            #quiz-result h2 {
+                color: #c04848;
+            }
+
+            #quiz-result p {
+                font-size: 1rem;
+                color: #333;
+            }
+
+
+
+
+
+
+            /* Cheat code container styling */
+            .cheat-code-container {
+                position: fixed;
+                /* Fixed at bottom-right corner */
+                bottom: 20px;
+                right: 20px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 10px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                /* Ensure it's on top of other elements */
+            }
+
+            /* Cheat code input styling */
+            #cheat-code {
+                padding: 8px;
+                font-size: 1rem;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                width: 150px;
+            }
+
+            /* Cheat code button styling */
+            #cheat-code-btn {
+                padding: 8px 12px;
+                background-color: #c04848;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            #cheat-code-btn:hover {
+                background-color: #b03636;
+            }
+
+
+
+            button {
+            background-color: #c04848;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        button:hover {
+            background-color: #b03636;
+        }
+
+        .bottom-text {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .bottom-text a {
+            color: #ffafaf;
+            text-decoration: none;
+        }
+
+        .bottom-text a:hover {
+            text-decoration: underline;
+
+        }
+        </style>
+    </head>
+
+</head>
+
+<body>
+
+
+    <script>
+        /*
+        // Check if the user is logged in
+        var loggedIn = localStorage.getItem("loggedIn");
+        if (!loggedIn || loggedIn !== "true") {
+            // If not logged in, redirect to the login page
+            window.location.href = "index.html";
+        } else {
+            // Set the flag again to ensure that the user remains logged in on page refresh
+            localStorage.setItem("loggedIn", "true");
+        }
+
+        // Listen for page refresh or unload events
+        window.addEventListener("beforeunload", function (event) {
+            // Clear the login state upon page refresh
+            localStorage.removeItem("loggedIn");
+        });
+        */
+    </script>
+
+
+
+
+
+
+
+
+    <audio id="surprise-audio" src="your-song.mp3" preload="auto"></audio>
+    <div class="inside-container">
+        <!-- Surprise message container -->
+        <div class="message" id="surprise-message">
+            <h1>YOU DID IT MA BABY! <img src="redheart.png" alt="red heart" height="50"></h1>
+            <p style="font-size: 17px;">Welcome to the special page. Here's your birthday surprise </p>
+            <p style="font-size: 17px;">But before you have a test ehm i have to</p>
+            <br>
+            <div class="bottom-text">
+                <a href="#">click somewhere in the page so you can enter babe</a>
+            </div>
+            
+        </div>
+
+
+        <!-- Quiz container (initially hidden) -->
+        <div class="quiz-container" id="quiz-container" style="display:none;">
+
+
+
+
+            <h1 style="color: black; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Let's see how good you are!</h1>
+            <form id="quiz-form">
+                <!-- Question 1 -->
+                <div class="question">
+                    <p style="color: black;">1. Why you are arabella?</p>
+                    <label><input type="radio" name="q1" value="rockstar" required> Because you are my rockstar</label>
+                    <label><input type="radio" name="q1" value="random"> just a random name</label>
+                </div>
+                <!-- Question 2 -->
+                <div class="question">
+                    <p style="color: black;">2. Whats our bent name?</p>
+                    <label><input type="radio" name="q2" value="batman" required> Batman</label>
+                    <label><input type="radio" name="q2" value="bibis"> Bibis</label>
+                </div>
+                <!-- Question 3 -->
+                <div class="question">
+                    <p style="color: black;">3. How much time we need to finish a movie?</p>
+                    <label><input type="radio" name="q3" value="focus" required> That time because we focus on the movie
+                        easily</label><br>
+                    <label><input type="radio" name="q3" value="3days"> Minimum 3 days or maybe never hahahah</label>
+                </div>
+                <!-- Question 4 -->
+                <div class="question">
+                    <p style="color: black;">4. When is our anniversary?</p>
+                    <label><input type="radio" name="q4" value="21" required> 21st October</label>
+                    <label><input type="radio" name="q4" value="11"> 11th October</label>
+                </div>
+                <!-- Question 5 -->
+                <div class="question">
+                    <p style="color: black;">5. If we disagree about smtg?</p>
+                    <label><input type="radio" name="q5" value="disagree" required> We just disagree</label>
+                    <label><input type="radio" name="q5" value="imsouane"> We meet in Imsouane</label>
+                </div>
+                <div class="question">
+                    <p style="color: black;">6. Who loves the other more?</p>
+                    <label><input type="radio" name="q6" value="dex" required> Me Dex (Of course)</label>
+                    <label><input type="radio" name="q6" value="arabella"> You arabella </label>
+                </div>
+                <button type="submit" style="font-family: Arial, sans-serif;">Submit Answers</button>
+            </form>
+            <div id="quiz-result"></div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" id="cheat-link"
+                    style="text-decoration: underline; color: rgba(54, 54, 54, 0.562); cursor: pointer;">
+                    Click here if you have the cheat code
+                </a>
+
+                <!-- Hidden cheat code container -->
+                <div class="cheat-code-container" id="cheat-code-container" style="display: none; margin-top: 20px; ">
+                    <input type="password" id="cheat-code" placeholder="Enter cheat code">
+                    <button id="cheat-code-btn" style="font-family: Arial, sans-serif;">Submit</button>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const surpriseMessage = document.getElementById("surprise-message");
+            const quizContainer = document.getElementById("quiz-container");
+            const surpriseAudio = document.getElementById("surprise-audio");
+
+            // Step 1: Fade-in the message when the page loads
+            setTimeout(function () {
+                surpriseMessage.classList.add("show");
+            }, 500); // Wait 500ms before starting the fade-in
+
+            // Step 2: Play the audio
+            surpriseAudio.play();
+
+            // Step 3: Wait for the user to click anywhere
+            document.body.addEventListener("click", function handleClick() {
+                // Fade out the message
+                surpriseMessage.classList.remove("show");
+
+                // Stop the audio
+                surpriseAudio.pause();
+                surpriseAudio.currentTime = 0; // Reset song to the beginning
+
+                // Step 4: Wait for the fade-out animation to complete
+                setTimeout(function () {
+                    // Show the quiz container
+                    quizContainer.style.display = "block";
+                    quizContainer.style.opacity = 0; // Start transparent
+                    quizContainer.style.transition = "opacity 2s ease-in-out"; // Smooth fade-in
+                    setTimeout(() => {
+                        quizContainer.style.opacity = 1; // Fade-in the quiz
+                    }, 100);
+
+                    // Remove the click listener to prevent triggering again
+                    document.body.removeEventListener("click", handleClick);
+                }, 2000); // Matches the fade-out duration
+            });
+        });
+
+    </script>
+
+
+
+
+
+
+
+    <script>
+        document.getElementById("quiz-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Correct answers for the quiz
+            const correctAnswers = {
+                q1: "rockstar",       // Correct answer for question 1
+                q2: "bibis",     // Correct answer for question 2
+                q3: "3days",   // Correct answer for question 3
+                q4: "21",      // Correct answer for question 4
+                q5: "imsouane",        // Correct answer for question 5
+                q6: "dex"
+            };
+
+            // Get the user's answers
+            const userAnswers = {
+                q1: document.querySelector('input[name="q1"]:checked')?.value,
+                q2: document.querySelector('input[name="q2"]:checked')?.value,
+                q3: document.querySelector('input[name="q3"]:checked')?.value,
+                q4: document.querySelector('input[name="q4"]:checked')?.value,
+                q5: document.querySelector('input[name="q5"]:checked')?.value,
+                q6: document.querySelector('input[name="q6"]:checked')?.value
+            };
+
+            let isCorrect = true;
+            let resultMessage = "";
+
+            // Check if the user's answers match the correct ones
+            for (let question in correctAnswers) {
+                if (userAnswers[question] !== correctAnswers[question]) {
+                    isCorrect = false;
+                    resultMessage += `<p>You made a mistake on a question !</p>`;
+                }
+            }
+
+            // Show the result based on correctness
+            const resultElement = document.getElementById("quiz-result");
+
+            if (isCorrect) {
+                resultMessage = "<h2>YOU DID GOOD !</h2>";
+
+                // Show success message
+                resultElement.innerHTML = resultMessage;
+
+                // Redirect to next page after 2 seconds
+                setTimeout(function () {
+                    window.location.href = "nextpage.html";
+                }, 2000); // 2-second delay
+            } else {
+                resultMessage += "<h2>EEAWDI </h2>";
+                resultElement.innerHTML = resultMessage;
+            }
+        });
+
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cheatLink = document.getElementById("cheat-link");
+            const cheatCodeContainer = document.getElementById("cheat-code-container");
+
+            // Show the cheat code input box when the link is clicked
+            cheatLink.addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent default link behavior
+                cheatCodeContainer.style.display = "block"; // Show the cheat code container
+            });
+            const cheatCodeButton = document.getElementById("cheat-code-btn");
+            const cheatCodeInput = document.getElementById("cheat-code");
+            const correctCheatCode = "arabella"; // Set the correct cheat code
+            const quizContainer = document.getElementById("quiz-container");
+            const quizResult = document.getElementById("quiz-result");
+
+            // Check the cheat code
+            cheatCodeButton.addEventListener("click", function () {
+                if (cheatCodeInput.value.trim() === correctCheatCode) {
+                    setTimeout(function () {
+                        window.location.href = "nextpage.html";
+                    }, 1000); // Redirect to the next page
+
+                } else {
+                    alert("NOO !");
+                    cheatCodeInput.value = ""; // Clear the input field
+                }
+            });
+
+            // Fade-in the quiz
+            setTimeout(function () {
+                quizContainer.style.display = "show";
+                quizContainer.style.opacity = 0;
+                quizContainer.style.transition = "opacity 2s ease-in-out"; // Smooth fade-in
+                setTimeout(() => {
+                    quizContainer.style.opacity = 1;
+                }, 100);
+            }, 3000); // Delay before showing the quiz after the message fades out
+        });
+
+    </script>
+
+
+
+
+
+    <!-- Cheat Code Link at the Bottom -->
+
+</body>
+
+</html>
