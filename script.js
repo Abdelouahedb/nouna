@@ -6,7 +6,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     var password = document.getElementById("password").value;
 
     // Check if the username and password are correct
-    if (username === "nourimane" && password === "dex") {
+    if (username.toLowerCase() === "nourimane" && password.toLowerCase() === "dex") {
         
         localStorage.setItem("loggedIn", "true");
 
