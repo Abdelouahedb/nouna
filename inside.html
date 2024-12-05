@@ -405,7 +405,7 @@
             for (let question in correctAnswers) {
                 if (userAnswers[question] !== correctAnswers[question]) {
                     isCorrect = false;
-                    resultMessage += `<p>You made a mistake on a question !</p>`;
+                    resultMessage = `<p>You made a mistake on a question !</p>`;
                 }
             }
 
