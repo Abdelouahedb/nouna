@@ -264,6 +264,16 @@
                 }
             </script>
 
+    <script>
+        // Get the audio element
+        const audio = document.getElementById('loveSong');
+
+        // Add an event listener to unmute when the user interacts with the page
+        document.body.addEventListener('click', () => {
+            audio.muted = false; // Unmute the audio
+            audio.play(); // Play the audio (works because user interaction)
+        });
+    </script>
 
 
 
